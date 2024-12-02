@@ -7,8 +7,7 @@ API untuk mengelola data anime menggunakan Go, Gin, dan GORM.
 1. Clone repositori ini:
 
    ```sh
-   git clone https://github.com/username/anime-management-api.git
-   cd anime-management-api
+   git clone https://github.com/luckysantoso/backend-anime.git
 
    ```
 
