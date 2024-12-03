@@ -1,5 +1,5 @@
 CREATE TABLE animes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     genre VARCHAR(255) NOT NULL,
     review TEXT NOT NULL,
@@ -7,3 +7,13 @@ CREATE TABLE animes (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- CREATE TABLE animes (
+--     id AUTO_INCREMENT PRIMARY KEY,
+--     title VARCHAR(255) NOT NULL,
+--     genre VARCHAR(255) NOT NULL,
+--     review TEXT NOT NULL,
+--     episodes INT NOT NULL,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );

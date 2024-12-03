@@ -1,6 +1,7 @@
 package controller_anime
 
 import (
+	"fmt"
 	"gin-gorm/database"
 	"gin-gorm/models"
 	"gin-gorm/requests"
@@ -286,5 +287,28 @@ func GetAllAnimePaginate(ctx *gin.Context){
 		"data" : anime,
 		"page" : pageInt,
 		"per_page" : perPageInt,
+	})
+}
+
+func UploadTumbnailAnime(ctx *gin.Context) {
+	
+	fileHeader, _ := ctx.FormFile("file")
+	if fileHeader == nil {
+		ctx.AbortWithStatusJSON(400, gin.H{
+			"message": "File not found",
+		})
+		return
+	}
+
+	errUpload := ctx.SaveUploadedFile(fileHeader, fmt.Sprintf("./public/files/%s", fileHeader.Filename))
+	if errUpload != nil {
+		ctx.AbortWithStatusJSON(500, gin.H{
+			"message": "Failed to upload file",
+		})
+		return
+	}
+
+	ctx.JSON(200, gin.H{
+		"message": "File uploaded successfully",
 	})
 }

@@ -239,3 +239,4 @@ func GetAllUserPaginate(ctx *gin.Context){
 		"per_page" : perPageInt,
 	})
 }
+

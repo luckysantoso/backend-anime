@@ -4,6 +4,7 @@ import (
 	"gin-gorm/configs/app_config"
 	"gin-gorm/controllers/controller_anime"
 	"gin-gorm/controllers/controller_book"
+	"gin-gorm/controllers/controller_prediction"
 	"gin-gorm/controllers/controller_user"
 	"gin-gorm/controllers/file_controller"
 
@@ -36,4 +37,8 @@ func InitRoutes(app *gin.Engine) {
 	route.PATCH("/anime/:id", controller_anime.UpdateAnimeById)
 	route.DELETE("/anime/:id", controller_anime.DeleteAnimeById)
 	route.GET("/anime/paginate", controller_anime.GetAllAnimePaginate)
+	route.POST("/anime/tumbnail", controller_anime.UploadTumbnailAnime)
+	
+	// Prediction Anime Image
+	route.POST("/anime/predict", controller_prediction.UploadAndPredictAI)
 }
