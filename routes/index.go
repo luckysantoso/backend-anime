@@ -4,6 +4,7 @@ import (
 	"gin-gorm/configs/app_config"
 	"gin-gorm/controllers/controller_anime"
 	"gin-gorm/controllers/controller_book"
+	"gin-gorm/controllers/controller_genre"
 	"gin-gorm/controllers/controller_prediction"
 	"gin-gorm/controllers/controller_user"
 	"gin-gorm/controllers/file_controller"
@@ -41,4 +42,11 @@ func InitRoutes(app *gin.Engine) {
 	
 	// Prediction Anime Image
 	route.POST("/anime/predict", controller_prediction.UploadAndPredictAI)
+
+	// Route Genre
+	route.GET("/genre", controller_genre.GetAllGenre)
+	route.GET("/genre/:id", controller_genre.GetGenreById)
+	route.POST("/genre", controller_genre.CreateGenre)
+	route.PATCH("/genre/:id", controller_genre.UpdateGenreById)
+	route.DELETE("/genre/:id", controller_genre.DeleteGenreById)
 }

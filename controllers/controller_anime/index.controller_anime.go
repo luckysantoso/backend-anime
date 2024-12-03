@@ -66,7 +66,7 @@ func CreateAnime (ctx *gin.Context) {
 	}
 
 	animeTitleExist := new(models.Anime)
-	erranimeTitleExist := database.DB.Table("Animes").Where("title = ?", animeReq.Title).Find(&animeTitleExist).Error
+	erranimeTitleExist := database.DB.Table("animes").Where("title = ?", animeReq.Title).Find(&animeTitleExist).Error
 
 	if erranimeTitleExist != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
@@ -84,7 +84,7 @@ func CreateAnime (ctx *gin.Context) {
 
 	anime := new(models.Anime)
 	anime.Title = &animeReq.Title
-	anime.Genre = &animeReq.Genre
+	anime.GenreId = &animeReq.GenreId
 	anime.Review = &animeReq.Review
 	anime.Episodes = &animeReq.Episodes
 	anime.CreatedAt = &animeReq.CreatedAt
@@ -95,6 +95,12 @@ func CreateAnime (ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Internal Server Error",
 		})
+		return
+	}
+
+	// Query dengan Preload untuk memuat relasi Genre
+	if err := database.DB.Preload("Genre").Where("id = ?", anime.GenreId).Find(&anime).Error; err != nil {
+		ctx.JSON(http.StatusNotFound, gin.H{"error": "Anime not found"})
 		return
 	}
 
@@ -151,7 +157,7 @@ func UpdateAnimeById(ctx *gin.Context){
 	}
 
 	anime.Title = &animeReq.Title
-	anime.Genre = &animeReq.Genre
+	anime.GenreId = &animeReq.GenreId
 	anime.Review = &animeReq.Review
 	anime.Episodes = &animeReq.Episodes
 	anime.CreatedAt = &animeReq.CreatedAt
@@ -168,7 +174,7 @@ func UpdateAnimeById(ctx *gin.Context){
 	animeResponses := responses.AnimeResponse{
 		ID: anime.ID,
 		Title: anime.Title,
-		Genre: anime.Genre,
+		GenreId: anime.GenreId,
 		Review: anime.Review,
 		Episodes: anime.Episodes,
 	}
