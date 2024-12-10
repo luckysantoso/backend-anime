@@ -42,7 +42,7 @@ func InitRoutes(app *gin.Engine) {
 	
 	// Prediction Anime Image
 	route.POST("/anime/predict", controller_prediction.UploadAndPredictAI)
-
+	// route.GET("/anime/predict/:id", controller_prediction.GetPredictionImage)
 	// Route Genre
 	route.GET("/genre", controller_genre.GetAllGenre)
 	route.GET("/genre/:id", controller_genre.GetGenreById)

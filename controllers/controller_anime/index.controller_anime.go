@@ -49,9 +49,31 @@ func GetAnimeById(ctx *gin.Context){
 		return
 	}
 
+	// Muat data genre
+	var genre models.Genre
+	if err := database.DB.First(&genre, anime.GenreId).Error; err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+		"message": "Failed to load genre",
+	})
+		return
+	}
+
+	// Mapping hasil query ke AnimeResponse
+    animeResponse := responses.AnimeResponse{
+        ID:       anime.ID,
+        Title:    anime.Title,
+        GenreId:  anime.GenreId,
+        Review:   anime.Review,
+        Episodes: anime.Episodes,
+        Genre: responses.GenreResponse{
+            ID:   genre.ID,
+            Name: genre.Name,
+        },
+    }
+
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "Data transmitted succesfully",
-		"data": anime,
+		"data": animeResponse,
 	})
 }
 
@@ -171,12 +193,14 @@ func UpdateAnimeById(ctx *gin.Context){
 		return
 	}
 
+	
 	animeResponses := responses.AnimeResponse{
 		ID: anime.ID,
 		Title: anime.Title,
 		GenreId: anime.GenreId,
 		Review: anime.Review,
 		Episodes: anime.Episodes,
+		
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{

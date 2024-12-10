@@ -135,3 +135,4 @@ func UploadAndPredictAI(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{"makeBy": bestLabel, "score": bestScore})
 }
+	
