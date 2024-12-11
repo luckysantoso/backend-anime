@@ -63,8 +63,8 @@ func GetAnimeById(ctx *gin.Context){
         ID:       anime.ID,
         Title:    anime.Title,
         GenreId:  anime.GenreId,
-        Review:   anime.Review,
         Episodes: anime.Episodes,
+		Sinopsis: anime.Sinopsis,
         Genre: responses.GenreResponse{
             ID:   genre.ID,
             Name: genre.Name,
@@ -107,8 +107,8 @@ func CreateAnime (ctx *gin.Context) {
 	anime := new(models.Anime)
 	anime.Title = &animeReq.Title
 	anime.GenreId = &animeReq.GenreId
-	anime.Review = &animeReq.Review
 	anime.Episodes = &animeReq.Episodes
+	anime.Sinopsis = &animeReq.Sinopsis
 	anime.CreatedAt = &animeReq.CreatedAt
 	anime.UpdatedAt = &animeReq.UpdatedAt
 
@@ -180,8 +180,8 @@ func UpdateAnimeById(ctx *gin.Context){
 
 	anime.Title = &animeReq.Title
 	anime.GenreId = &animeReq.GenreId
-	anime.Review = &animeReq.Review
 	anime.Episodes = &animeReq.Episodes
+	anime.Sinopsis = &animeReq.Sinopsis
 	anime.CreatedAt = &animeReq.CreatedAt
 	anime.UpdatedAt = &animeReq.UpdatedAt
 
@@ -198,7 +198,7 @@ func UpdateAnimeById(ctx *gin.Context){
 		ID: anime.ID,
 		Title: anime.Title,
 		GenreId: anime.GenreId,
-		Review: anime.Review,
+		Sinopsis : anime.Sinopsis,
 		Episodes: anime.Episodes,
 		
 	}
