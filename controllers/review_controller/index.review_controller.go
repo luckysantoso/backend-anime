@@ -24,20 +24,20 @@ func GetReviewsByAnimeId(ctx *gin.Context) {
 		return
 	}
 
-	if len(reviews) == 0 {
-		ctx.JSON(http.StatusNotFound, gin.H{
-			"message": "Data Not Found",
-		})
-		return
-	}
+	// if len(reviews) == 0 {
+	// 	ctx.JSON(http.StatusNotFound, gin.H{
+	// 		"message": "Data Not Found",
+	// 	})
+	// 	return
+	// }
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "Data transmitted successfully",
-		"data": reviews,
+		"data":    reviews,
 	})
 }
 
-func CreateReview (ctx *gin.Context) {
+func CreateReview(ctx *gin.Context) {
 	reviewReq := new(requests.ReviewRequest)
 
 	if errReq := ctx.ShouldBind(&reviewReq); errReq != nil {
@@ -51,7 +51,6 @@ func CreateReview (ctx *gin.Context) {
 	review.UserId = &reviewReq.UserId
 	review.AnimeId = &reviewReq.AnimeId
 	review.Message = &reviewReq.Message
-	
 
 	errDb := database.DB.Table("reviews").Create(&review).Error
 	if errDb != nil {
@@ -63,7 +62,7 @@ func CreateReview (ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "Data saved succesfully",
-		"data": review,
+		"data":    review,
 	})
-	
+
 }
