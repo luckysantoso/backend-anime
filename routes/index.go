@@ -8,6 +8,7 @@ import (
 	"gin-gorm/controllers/controller_prediction"
 	"gin-gorm/controllers/controller_user"
 	"gin-gorm/controllers/file_controller"
+	controller_reviews "gin-gorm/controllers/review_controller"
 
 	"github.com/gin-gonic/gin"
 )
@@ -49,4 +50,10 @@ func InitRoutes(app *gin.Engine) {
 	route.POST("/genre", controller_genre.CreateGenre)
 	route.PATCH("/genre/:id", controller_genre.UpdateGenreById)
 	route.DELETE("/genre/:id", controller_genre.DeleteGenreById)
+
+
+	// Route Review
+	route.GET("/reviews/:anime_id", controller_reviews.GetReviewsByAnimeId)
+	route.POST("/reviews/:anime_id", controller_reviews.CreateReview)
 }
+
