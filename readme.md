@@ -21,14 +21,14 @@ API untuk mengelola data anime menggunakan Go, Gin, dan GORM.
    Perintah ini akan menerapkan semua migrasi yang belum diterapkan ke database Anda. Ini berguna ketika Anda ingin memperbarui skema database ke versi terbaru.
 
    ```
-   migrate -database "mysql://root:@tcp(127.0.0.1:3306)/db_gorm" -path database/migrations up
+   migrate -database "mysql://root:@tcp(127.0.0.1:3306)/eas_pbkk" -path database/migrations up
    ```
 
    **Down Migration**
    Perintah ini akan membatalkan migrasi terakhir yang diterapkan. Ini berguna ketika Anda ingin mengembalikan skema database ke versi sebelumnya.
 
    ```
-   migrate -database "mysql://root:@tcp(127.0.0.1:3306)/db_gorm" -path database/migrations down
+   migrate -database "mysql://root:@tcp(127.0.0.1:3306)/eas_pbkk" -path database/migrations down
    ```
 
    b. Migration Database With PostgreSQL
