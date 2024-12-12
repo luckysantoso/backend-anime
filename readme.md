@@ -1,8 +1,17 @@
-# Anime Management API
+# Golang Final Project
 
+| Name           | NRP        |
+| ---            | ---        |
+| Lucky Santoso | 5025221050 |
+| Putri Meyliya Rachmawati | 5025221062 |
+
+## Link Youtube
+https://youtu.be/JZl130uJEp0 
+
+## Anime Management API
 API untuk mengelola data anime menggunakan Go, Gin, dan GORM.
 
-## Instalasi
+### Instalasi
 
 1. Clone repositori ini:
 
@@ -45,7 +54,7 @@ API untuk mengelola data anime menggunakan Go, Gin, dan GORM.
    migrate -database "postgres://postgres:password@127.0.0.1:5432/backendanime?sslmode=disable" -path database/migrations down
    ```
 
-## Menjalankan Aplikasi
+### Menjalankan Aplikasi
 
 1. Jalankan aplikasi golang:
 
